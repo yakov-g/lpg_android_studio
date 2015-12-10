@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+     <!-- Action bar menu items -->
+    <string name="action_settings">Настройки</string>
+    <string name="action_help">Помощь</string>
+    <!-- Activities names -->
+    <string name="title_activity_help">Помощь</string>
+    <string name="title_activity_settings">Настройки</string>
+    
+    <!-- Popup window -->
+    <string name="popup_content">Мы надеемся, что Вам нравится пользоватся этим приложением. 
+        Пожалуйста оцените нашу работу.</string>
+    <string name="popup_later">Позже</string>
+    <string name="popup_header">Обновленные цены</string>
+    
+    <!-- Marker's context menu items -->
+    <string name="it_navigate">Проложить маршрут</string>
+    <string name="it_price">Обновить цену</string>
+    <string name="it_price_memo">Цена должна быть в диапазоне:</string>
+    <string name="it_web">Открыть сайт</string>
+    <string name="it_send_message">Сообщить об ошибке</string>
+    
+     <!-- Update dialog buttons -->
+    <string name="cancel">Отменить</string>
+
+    <!--  Preference strings -->
+    <string name="pref_logo">Показывать логотипы заправок/гаражей</string>
+    <string name="pref_stations">Показывать заправки</string>
+    <string name="pref_garages">Показывать автосервисы</string>
+    <string name="pref_show_price_updates">Показывать обновления цен</string>
+    <string name="pref_show_price_updates_summary">Список заправок, на которых цены были обновлены</string>
+    <string name="pref_message_bar">Показывать сообщения</string>
+    
+    <string name="help_content">Данное приложение поможет Вам найти газовую автозаправку в Израиле и проложить маршрут с помощью Вашей любимой навигационной программы.\n\n
+		                Использование:\n
+		                При запуске карта автоматически отобразит Ваше текущее местоположение.\n
+		                Заправочные станции отображены в виде голубых значков. При клике на значок Вы увидите информационное окно с названием и часами работы заправочной станции.\n
+		                Если Вы кликните на информационное окно, откроется менб выбора навигационной программы.\n
+		                При выборе навигационной программы, выполнится действие, характерное для данной программы.
+		                Например, Waze предложит проложить маршрут к выбранной заправочной станции. 
+		                \n\n
+		                На данный момент,в информации, предоставляемой программой, могут быть неточности.\n
+		                Если Вы обладаете обновленной информацией о заправочной станции или знаете о станции, котороя не отображена в программе, просьба отправить письмо автору по адресу:\n
+		                yakov.goldberg@gmail.com\n\n
+		                Приложение предоставляется по принципу: \"как есть\".\n
+		                Автор не несет ответственности за любые неточности в представленной информации, 
+		                а также за любые последствия вызванные использованием приложения.</string>
+
+</resources>

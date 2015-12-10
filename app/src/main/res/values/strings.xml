@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <string name="version_string">Version: 0.1.7</string>
+    
+    <!-- Action bar menu items -->
+    <string name="app_name">גפ\'\'מ ישראל</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
+    
+    <!-- Activities names -->
+    <string name="title_activity_map">גפ\'\'מ ישראל</string>
+    <string name="title_activity_help">Help</string>
+    <string name="title_activity_settings">Settings</string>
+    
+    <!-- Popup window -->
+    <string name="popup_content">We hope you enjoy using our application. Please take a second to give us your feedback.</string>
+    <string name="popup_later">Later</string>
+    <string name="popup_header">Updated prices</string>
+    
+    <!-- Marker's context menu items -->
+    <string name="it_navigate">Navigate</string>
+    <string name="it_price">Update price</string>
+    <string name="it_price_memo">price should be in range:</string>
+    <string name="it_web">Visit web page</string>
+    <string name="it_send_message">Report on incorrect info</string>
+    
+    <!-- Update dialog buttons -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    
+    <!--  Preference strings -->
+    <string name="pref_logo">Show station/garage logo</string>
+    <string name="pref_stations">Show LPG stations</string>
+    <string name="pref_garages">Show LPG garages</string>
+    <string name="pref_show_price_updates">Show price updates</string>
+    <string name="pref_show_price_updates_summary">Shows a list of stations in which the price was updated</string>
+    <string name="pref_message_bar">Show messages</string>
+    <!--  Preference value -->
+    <string name="pref_version_code">pref_version_code</string>
+    
+    <string name="help_content">This app helps you to locate LPG refilling stations in Israel.\n 
+		                It allows you to select the station and get driving direction using your favorite
+		                navigation application.\n\n
+		                Usage:\n
+		                On start it tries to find your position.\n
+		                You can scroll around a map and click on points, to see information about station.\n
+		                If you will click on station\'s information window, app will suggest you to choose navigation program.\n
+		                And you can go!\n\n
+		                Currently, there is no full data about all stations in Israel.\n
+		                If you can update any information about refilling stations, please contact an author:\n
+		                yakov.goldberg@gmail.com\n\n
+		                Application is provided \"as is\".\n
+		                The author is not responsible for any information inaccuracies in application 
+		                and for any consequences resulting from usage of application.</string>	                
+</resources>

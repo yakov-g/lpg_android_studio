@@ -1,0 +1,56 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".HelpActivity" >
+
+    <LinearLayout
+        android:id="@+id/message_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/helptextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:maxLines="50" />
+
+        <LinearLayout
+            android:id="@+id/help_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/help_rate_button"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rate_btn_selector" />
+
+            <ImageButton
+                android:id="@+id/help_facebook_button"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:onClick="help_facebook_clicked"
+                android:background="@drawable/facebook_btn_selector" />
+
+            <ImageButton
+                android:id="@+id/button_send"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:onClick="help_mail_send_clicked"
+                android:background="@drawable/mail_send_btn_selector" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

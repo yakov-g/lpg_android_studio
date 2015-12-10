@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- General -->
+    <!-- Action bar menu items -->
+     <string name="action_settings">הגדרות</string>
+     <string name="action_help">עזרה</string>
+     
+     <!-- Activities names -->
+     <string name="title_activity_help">עזרה</string>
+     <string name="title_activity_settings">הגדרות</string>
+     
+    <!-- Popup window -->
+    <string name="popup_content">אנו מקווים שאתם נהנים להשתמש באפליקציה. נשמח לקבל מכם משוב.
+תודה!</string>
+    <string name="popup_later">מאוחר יותר</string>
+    <string name="popup_header">מחירים מעודכנים</string>
+     
+    <!-- Marker's context menu items -->
+     <string name="it_navigate">נווט</string>
+     <string name="it_price">עדכן מחיר</string>
+     <string name="it_price_memo">הערך המוזן צריך להיות בין:</string>
+     <string name="it_web">בקר בדף האינטרנט</string>
+     <string name="it_send_message">דווח על מידע שגוי</string>
+     
+     <!-- Update dialog buttons -->
+     <string name="cancel">ביטול</string>
+     
+     <!--  Preference strings -->
+     <string name="pref_logo">הצג את לוגו התחנה/מוסך</string>
+     <string name="pref_stations">הצג תחנות תדלוק בגז</string>
+     <string name="pref_garages">הצג מוסכים</string>
+     <string name="pref_show_price_updates">הצג עדכוני מחיר</string>
+     <string name="pref_show_price_updates_summary">מציג רשימה של תחנות בהן המחיר התעדכן</string>
+     <string name="pref_message_bar">הצג הודעות</string>
+     
+     <string name="help_content">האפליקציה מציגה על גבי מפה את כל תחנות התדלוק בגז הקיימות בישראל, ומידע  שימושי אודות כל תחנה: כתובת, שעות פעילות ומחיר הגז.
+אחרי שתבחרו בתחנה הרצוייה, תוכלו לקבל הוראות ניווט לתחנה זו.\n\n 
+         הוראות שימוש:\n
+1. בעת הפעלה, האפליקציה מאתרת ומציגה את מיקומך הנוכחי. כמו כן היא מציגה את כל תחנות התדלוק בגז הקיימות בישראל (כל תחנה מוצגת כבועית כחולה).\n 
+2. בחר בתחנת התדלוק הרצויה ע"י לחיצה על הבועית הכחולה המייצגת אותה.
+3. מידע אודות התחנה (כתובתעל גבי מפה ושעות הפעילות) יופיע מעל הבועית הכחולה. אם ברצונך לנווט לתחנה שבחרת, לחץ על הבועית עם המידע על התחנה.
+4. יפתח מסך המאפשר לך לבחור באפליקציית הניווט המועדפת עליך, בעזרתה תנווט לתחנת התדלוק. בחר באפליקציה הרצויה.
+5. אפליקציית הניווט תופעל. התחל בנסיעה ועקוב אחר הוראות הניווט של אפליקציית הניווט.\n
+שים לב:
+חלק מהמידע אודות התחנות עדיין חסר. (אנחנו עושים מאמצים רבים בכדי לספק את המידע העדכני ביותר בהקדם האפשרי)
+אם מצאת מידע שחסר, או שמצאת מידע שגוי, אנא עדכן את מפתח האפליקציה באי-מייל:\nyakov.goldberg@gmail.com</string>
+</resources>

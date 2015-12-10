@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/it_navigate"
+    android:title="@string/it_navigate" />
+    <item android:id="@+id/it_price"
+    android:title="@string/it_price"
+    android:enabled="true"/>
+    <item android:id="@+id/it_web"
+    android:title="@string/it_web"
+    android:enabled="true"/>
+    <item android:id="@+id/it_send_message"
+    android:title="@string/it_send_message"
+    android:enabled="true"/>
+</menu>
+
