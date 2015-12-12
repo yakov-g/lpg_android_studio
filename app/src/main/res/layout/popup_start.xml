@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroller"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/grad_bg" >
+    android:background="@drawable/popup_gradient_background"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/popup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/popup_header_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/popup_header"
-            android:textSize="17sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/popup_textview"
@@ -35,9 +21,10 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:textColor="@color/dark_blue"
             android:layout_marginTop="5dp"
-            android:text="@string/popup_content"
-            android:textSize="15sp" />
+            style="@android:style/TextAppearance.DeviceDefault.Large"
+            android:text="@string/popup_content"/>
 
         <LinearLayout
             android:id="@+id/popup2"
@@ -69,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:textColor="@color/dark_blue"
             android:text="@string/popup_later" />
     </LinearLayout>
 

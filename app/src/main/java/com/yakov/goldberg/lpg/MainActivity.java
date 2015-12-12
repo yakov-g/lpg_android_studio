@@ -1,34 +1,5 @@
 package com.yakov.goldberg.lpg;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import android.util.Log;
-import android.view.View.OnClickListener;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-/*  Uncomment then use with Fragment.
- *  Need also change
- *  com.google.android.gms.maps.SupportMapFragment
- *  to
- *  com.google.android.gms.maps.MapFragment 
- *  */
-//import android.app.Activity;
-//import com.google.android.gms.maps.MapFragment;
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.LocalBroadcastManager;
-import android.text.Editable;
-import android.text.TextWatcher;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -45,45 +16,67 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-/*
- import android.os.StrictMode;
- import android.os.StrictMode.ThreadPolicy;
- */
-
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
-
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.analytics.GoogleAnalytics;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/*  Uncomment then use with Fragment.
+ *  Need also change
+ *  com.google.android.gms.maps.SupportMapFragment
+ *  to
+ *  com.google.android.gms.maps.MapFragment
+ *  */
+//import android.app.Activity;
+//import com.google.android.gms.maps.MapFragment;
+/*
+ import android.os.StrictMode;
+ import android.os.StrictMode.ThreadPolicy;
+ */
 
 public class MainActivity extends FragmentActivity implements
-               OnMarkerClickListener, OnInfoWindowClickListener {
+		OnMarkerClickListener, OnInfoWindowClickListener {
 
 	private GoogleMap mMap;
 	private TextView tw;
@@ -344,6 +337,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		/*
 		 * //ThreadPolicy oldThreadPolicy = StrictMode.getThreadPolicy();
 		 * //StrictMode.setThreadPolicy(new
@@ -474,12 +468,12 @@ public class MainActivity extends FragmentActivity implements
 				} else {
 					float color = 0;
 					switch (type) {
-					case 1:
-						color = BitmapDescriptorFactory.HUE_AZURE;
-						break;
-					case 2:
-						color = BitmapDescriptorFactory.HUE_MAGENTA;
-						break;
+						case 1:
+							color = BitmapDescriptorFactory.HUE_AZURE;
+							break;
+						case 2:
+							color = BitmapDescriptorFactory.HUE_MAGENTA;
+							break;
 					}
 					mar = BitmapDescriptorFactory.defaultMarker(color);
 				}
@@ -577,24 +571,24 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
-		case R.id.action_help: {
-			Intent intent = new Intent(this, HelpActivity.class);
-			startActivity(intent);
-			return true;
-		}
-		case R.id.action_settings: {
-			Intent intent = new Intent(this, SettingsActivity.class);
-			startActivity(intent);
-			return true;
-		}
+			case R.id.action_help: {
+				Intent intent = new Intent(this, HelpActivity.class);
+				startActivity(intent);
+				return true;
+			}
+			case R.id.action_settings: {
+				Intent intent = new Intent(this, SettingsActivity.class);
+				startActivity(intent);
+				return true;
+			}
 
-		default:
-			return super.onOptionsItemSelected(item);
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+									ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.point_menu, menu);
@@ -625,152 +619,152 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onContextItemSelected(MenuItem item) {
 		final int idx = Integer.parseInt(cur_marker.getTitle());
 		switch (item.getItemId()) {
-		case R.id.it_navigate:
-			final LatLng m_pos = cur_marker.getPosition();
-			cur_marker = null;
-			// Show place in waze
-			// String s = String.format("waze://?ll=%s, %s&z=8", m_pos.latitude,
-			// m_pos.longitude);
-			// Open window to choose map application
-			String ss = String.format("geo: %s, %s", m_pos.latitude,
-					m_pos.longitude);
-			try {
-				String url = ss;
-				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-				startActivity(intent);
-			} catch (ActivityNotFoundException ex) {
-				Intent intent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse("market://details?id=com.waze"));
-				startActivity(intent);
-			}
-			return true;
-		case R.id.it_web:
-			try {
-				JSONObject jo = ld.getRecordByKey(idx);
-				String url = jo.getString("time");
-				if (!url.startsWith("http://") && !url.startsWith("https://"))
-					url = "http://" + url;
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-						Uri.parse(url));
-				startActivity(browserIntent);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return true;
-		case R.id.it_price:
-			String price = "0.00",
-			t1 = "",
-			t2 = "";
-			try {
-				JSONObject jo = ld.getRecordByKey(idx);
-				price = Double.toString(jo.getDouble("price"));
-				if (price.length() == 1)
-					price = price + ".00";
-				if (price.length() == 3)
-					price = price + "0";
+			case R.id.it_navigate:
+				final LatLng m_pos = cur_marker.getPosition();
+				cur_marker = null;
+				// Show place in waze
+				// String s = String.format("waze://?ll=%s, %s&z=8", m_pos.latitude,
+				// m_pos.longitude);
+				// Open window to choose map application
+				String ss = String.format("geo: %s, %s", m_pos.latitude,
+						m_pos.longitude);
+				try {
+					String url = ss;
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(intent);
+				} catch (ActivityNotFoundException ex) {
+					Intent intent = new Intent(Intent.ACTION_VIEW,
+							Uri.parse("market://details?id=com.waze"));
+					startActivity(intent);
+				}
+				return true;
+			case R.id.it_web:
+				try {
+					JSONObject jo = ld.getRecordByKey(idx);
+					String url = jo.getString("time");
+					if (!url.startsWith("http://") && !url.startsWith("https://"))
+						url = "http://" + url;
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+							Uri.parse(url));
+					startActivity(browserIntent);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return true;
+			case R.id.it_price:
+				String price = "0.00",
+						t1 = "",
+						t2 = "";
+				try {
+					JSONObject jo = ld.getRecordByKey(idx);
+					price = Double.toString(jo.getDouble("price"));
+					if (price.length() == 1)
+						price = price + ".00";
+					if (price.length() == 3)
+						price = price + "0";
 
-				t1 = Double.toString(jo.getDouble("lat"));
-				t2 = Double.toString(jo.getDouble("lng"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			final String str_lat = t1;
-			final String str_lng = t2;
-			LayoutInflater inflater = this.getLayoutInflater();
-			View updateView = inflater.inflate(R.layout.price_update_dialog,
-					null);
+					t1 = Double.toString(jo.getDouble("lat"));
+					t2 = Double.toString(jo.getDouble("lng"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				final String str_lat = t1;
+				final String str_lng = t2;
+				LayoutInflater inflater = this.getLayoutInflater();
+				View updateView = inflater.inflate(R.layout.price_update_dialog,
+						null);
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setView(updateView);
-			TextView tww = (TextView) updateView
-					.findViewById(R.id.textview_price_memo);
-			String update_memo = getResources().getString(
-					R.string.it_price_memo);
-			update_memo += String.format(" \u20aa%s-%s", min_price, max_price);
-			tww.setText(update_memo);
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setView(updateView);
+				TextView tww = (TextView) updateView
+						.findViewById(R.id.textview_price_memo);
+				String update_memo = getResources().getString(
+						R.string.it_price_memo);
+				update_memo += String.format(" \u20aa%s-%s", min_price, max_price);
+				tww.setText(update_memo);
 
-			final EditText userInput = (EditText) updateView
-					.findViewById(R.id.editTextUpdatePrice);
+				final EditText userInput = (EditText) updateView
+						.findViewById(R.id.editTextUpdatePrice);
 
-			builder.setPositiveButton(R.string.ok,
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int id) {
-							String price = userInput.getText().toString();
-							ld.updatePriceByKey(idx, Double.parseDouble(price));
+				builder.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int id) {
+								String price = userInput.getText().toString();
+								ld.updatePriceByKey(idx, Double.parseDouble(price));
 
-							try {
-								FileOutputStream fos;
-								fos = openFileOutput(filename,
-										Context.MODE_PRIVATE);
-								ld.dumpToFile(fos);
-								fos.close();
-							} catch (Exception ee) {
-								ee.printStackTrace();
+								try {
+									FileOutputStream fos;
+									fos = openFileOutput(filename,
+											Context.MODE_PRIVATE);
+									ld.dumpToFile(fos);
+									fos.close();
+								} catch (Exception ee) {
+									ee.printStackTrace();
+								}
+
+								drawMap(ld.getArr());
+								runPriceSetService(str_lat, str_lng, price);
 							}
+						});
+				builder.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
 
-							drawMap(ld.getArr());
-							runPriceSetService(str_lat, str_lng, price);
-						}
-					});
-			builder.setNegativeButton(R.string.cancel,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.cancel();
-						}
-					});
+				userInput.setText(price);
 
-			userInput.setText(price);
+				final AlertDialog updateDialog = builder.create();
 
-			final AlertDialog updateDialog = builder.create();
+				// userInput.setTextColor(Color.GREEN);
+				userInput.addTextChangedListener(new TextWatcher() {
+					public void afterTextChanged(Editable s) {
+						String str = s.toString();
+						if (str.length() > 0) {
+							if (str.equals("."))
+								return;
+							double price = Double.parseDouble(str);
+							Button bt2 = updateDialog
+									.getButton(AlertDialog.BUTTON_POSITIVE);
 
-			// userInput.setTextColor(Color.GREEN);
-			userInput.addTextChangedListener(new TextWatcher() {
-				public void afterTextChanged(Editable s) {
-					String str = s.toString();
-					if (str.length() > 0) {
-						if (str.equals("."))
-							return;
-						double price = Double.parseDouble(str);
-						Button bt2 = updateDialog
-								.getButton(AlertDialog.BUTTON_POSITIVE);
-
-						if ((price < min_price) || (price > max_price)) {
-							// userInput.setTextColor(Color.RED);
-							bt2.setEnabled(false);
-						} else {
-							// userInput.setTextColor(Color.GREEN);
-							bt2.setEnabled(true);
+							if ((price < min_price) || (price > max_price)) {
+								// userInput.setTextColor(Color.RED);
+								bt2.setEnabled(false);
+							} else {
+								// userInput.setTextColor(Color.GREEN);
+								bt2.setEnabled(true);
+							}
 						}
 					}
-				}
 
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-				}
+					public void beforeTextChanged(CharSequence s, int start,
+												  int count, int after) {
+					}
 
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-				}
-			});
-			updateDialog.show();
-			Button bt = updateDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-			bt.setEnabled(false);
+					public void onTextChanged(CharSequence s, int start,
+											  int before, int count) {
+					}
+				});
+				updateDialog.show();
+				Button bt = updateDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+				bt.setEnabled(false);
 
-			return true;
-		case R.id.it_send_message:
-			try {
-				JSONObject jo = ld.getRecordByKey(idx);
-				String name = jo.getString("name");
-				Intent i = (new Helper()).send_mail_to_developer(
-						"Report about mistake: " + name, "");
-				startActivity(Intent.createChooser(i, "Send Email"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return true;
-		default:
-			return super.onContextItemSelected(item);
+				return true;
+			case R.id.it_send_message:
+				try {
+					JSONObject jo = ld.getRecordByKey(idx);
+					String name = jo.getString("name");
+					Intent i = (new Helper()).send_mail_to_developer(
+							"Report about mistake: " + name, "");
+					startActivity(Intent.createChooser(i, "Send Email"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return true;
+			default:
+				return super.onContextItemSelected(item);
 		}
 	}
 
@@ -779,7 +773,7 @@ public class MainActivity extends FragmentActivity implements
 		showPopup();
 	}
 
-	 /** Check if saved version code == current code. Used to show popup window on
+	/** Check if saved version code == current code. Used to show popup window on
 	 * first run after install or update
 	 */
 	public boolean app_version_changed() {
@@ -809,65 +803,30 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	public void showPopup() {
-		// Inflate the popup_layout.xml
-		LinearLayout viewGroup = (LinearLayout) this.findViewById(R.id.popup);
-		LayoutInflater layoutInflater = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		final View layout = layoutInflater.inflate(R.layout.popup_start,
-				viewGroup);
-
-		Button close_but;
-		ImageButton rate_but, fb_but;
-		final TextView rate_tw;
-		TextView tw;
-		final PopupWindow popup = new PopupWindow(this);
-
-		// popup.setBackgroundDrawable(new BitmapDrawable());
-		tw = (TextView) layout.findViewById(R.id.popup_header_textview);
-		tw.setVisibility(View.GONE);
-		close_but = (Button) layout.findViewById(R.id.later_but);
-		rate_but = (ImageButton) layout.findViewById(R.id.rate_button);
-		fb_but = (ImageButton) layout.findViewById(R.id.facebook_button);
-		rate_tw = (TextView) layout.findViewById(R.id.popup_textview);
-
-		close_but.setOnClickListener(new OnClickListener() {
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.popup_start);
+		dialog.findViewById(R.id.later_but).setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
-				popup.dismiss();
+				dialog.dismiss();
 			}
 		});
-
-		rate_but.setOnClickListener(new OnClickListener() {
+		dialog.findViewById(R.id.rate_button).setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				String str = "https://play.google.com/store/apps/details?id=com.yakov.goldberg.lpg";
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(str)));
 			}
 		});
-
-		final Context ctx = this;
-		fb_but.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				Intent i = (new Helper()).getOpenFacebookIntent(ctx);
+		dialog.findViewById(R.id.facebook_button).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = (new Helper()).getOpenFacebookIntent(MainActivity.this);
 				startActivity(i);
 			}
 		});
-
-		popup.setContentView(layout);
-		layout.post(new Runnable() {
-			public void run() {
-				int w;
-				View ll = (View) findViewById(R.id.main_layout);
-				popup.showAtLocation(ll, Gravity.CENTER, 0, 0);
-				w = ll.getWidth();
-				if (w < 500) {
-					w = w - 20;
-					rate_tw.setTextSize(13);
-					popup.update(0, 0, w, 400);
-				} else {
-					popup.update(0, 0, 500, 550);
-				}
-
-			}
-		});
+		dialog.show();
 	}
 
 	public void showPopup3(String text_to_show) {

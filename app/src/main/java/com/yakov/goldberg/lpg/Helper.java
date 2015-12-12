@@ -2,6 +2,7 @@ package com.yakov.goldberg.lpg;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 
 public class Helper {
@@ -14,20 +15,22 @@ public class Helper {
 		intent.putExtra(Intent.EXTRA_TEXT, body);
 		return intent;
 	}
+
 	public Intent getOpenFacebookIntent(Context context) {
-	    try {
-	    	//Checks if FB is even installed.
-	        context.getPackageManager()
-	                .getPackageInfo("com.facebook.katana", 0);
-	      //Trys to make intent with FB's URI
-	        return new Intent(Intent.ACTION_VIEW,
-	                Uri.parse("fb://profile/149755558551918"));
-	    }
-	    //catches and opens a url to the desired page
-	    catch (Exception e) {
-	        return new Intent(Intent.ACTION_VIEW,
-	                Uri.parse("https://www.facebook.com/LPGIsrael"));
-	    }
+		String facebookUrl = "https://www.facebook.com/LPGIsrael";
+		try {
+			int versionCode = context.getPackageManager().getPackageInfo("com.facebook.katana", 0).versionCode;
+			if (versionCode >= 3002850) {
+				Uri uri = Uri.parse("fb://facewebmodal/f?href=" + facebookUrl);
+				return  new Intent(Intent.ACTION_VIEW, uri);
+			} else {
+				// open the Facebook app using the old method (fb://profile/id or fb://page/id)
+				return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/149755558551918"));
+			}
+		} catch (PackageManager.NameNotFoundException e) {
+			// Facebook is not installed. Open the browser
+			return (new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl)));
+		}
 	}
 
 }
