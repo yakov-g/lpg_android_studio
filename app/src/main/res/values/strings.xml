@@ -2,7 +2,7 @@
 <resources>
 
     <!-- General -->
-    <string name="version_string">Version: 0.1.7</string>
+    <string name="version_string">Version: 0.1.8</string>
     
     <!-- Action bar menu items -->
     <string name="app_name">גפ\'\'מ ישראל</string>
@@ -40,7 +40,19 @@
     <!--  Preference value -->
     <string name="pref_version_code">pref_version_code</string>
     
-    <string name="help_content">This app helps you to locate LPG refilling stations in Israel.\n 
+    <string name="help_content">Dear users!\n
+Unfortunately I didn\'t release updates during last year as I don\'t have time to support the App.\n
+Now I\'m releasing update to support latest Android versions.\n
+Also I will try to update the list of gas stations.\n
+If you have your own ideas regarding LPG Israel, you are more than welcome.\n
+I will appreciate any help in developing the App.\n
+        Parts that require support:\n
+1. Android app\n
+2. IPhone app\n
+3. Web-client for data base (add/remove/edit gas stations info)\n
+Answer any questions by e-mail.\n\n
+
+        This app helps you to locate LPG refilling stations in Israel.\n
 		                It allows you to select the station and get driving direction using your favorite
 		                navigation application.\n\n
 		                Usage:\n

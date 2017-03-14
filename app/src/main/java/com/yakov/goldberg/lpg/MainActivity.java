@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.Manifest;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.common.ConnectionResult;
@@ -50,6 +51,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -61,6 +63,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.content.pm.PackageManager;
 
 /*  Uncomment then use with Fragment.
  *  Need also change
@@ -76,9 +81,9 @@ import java.util.Map;
  */
 
 public class MainActivity extends FragmentActivity implements
-		OnMarkerClickListener, OnInfoWindowClickListener {
+		OnMarkerClickListener, OnInfoWindowClickListener,OnMapReadyCallback {
 
-	private GoogleMap mMap;
+	private GoogleMap mMap = null;
 	private TextView tw;
 	private Button but_prev;
 	private Button but_next;
@@ -96,6 +101,7 @@ public class MainActivity extends FragmentActivity implements
 	private Handler mHandler;
 	private final ResponseReceiver rr = new ResponseReceiver();
 	int google_play_services_status;
+    private final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
 	Runnable mStatusChecker = new Runnable() {
 		@Override
@@ -351,6 +357,12 @@ public class MainActivity extends FragmentActivity implements
 			GooglePlayServicesUtil.getErrorDialog(google_play_services_status,
 					this, 1).show();
 		} else {
+            if (!checkPermission()) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
+
 			sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 			setContentView(R.layout.activity_main);
 			mHandler = new Handler();
@@ -403,37 +415,21 @@ public class MainActivity extends FragmentActivity implements
 				e.printStackTrace();
 			}
 
-			LatLng CurLoc = new LatLng(32.076757, 34.786835);
-			int zoom = 10;
-
-			gps = new GPSLocation(this);
-			registerForContextMenu(tw);
-			setMinMaxPrice(ld.getMinPrice(), ld.getMaxPrice());
-
 			FragmentManager fm;
 			SupportMapFragment mapFragment;
 			// fm = getFragmentManager();
 			fm = getSupportFragmentManager();
 			mapFragment = ((SupportMapFragment) fm.findFragmentById(R.id.map));
-			mMap = mapFragment.getMap();
-			mMap.setOnMarkerClickListener(this);
-			mMap.setOnInfoWindowClickListener(this);
-			mMap.setInfoWindowAdapter(new LPGWindow());
-			mMap.setMyLocationEnabled(true);
+			mapFragment.getMapAsync(this);
 
-			if (gps.canGetLocation()) {
-				CurLoc = new LatLng(gps.getLatitude(), gps.getLongitude());
-				zoom = 11;
-			}
+            registerForContextMenu(tw);
+            setMinMaxPrice(ld.getMinPrice(), ld.getMaxPrice());
 
-			mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(CurLoc, zoom));
+            // If version was changed, show popup window to get liked
+            if (app_version_changed()) {
+                showPopup();
+            }
 
-			// Put markers on map.
-			drawMap(ld.getArr());
-			// If version was changed, show popup window to get liked
-			if (app_version_changed()) {
-				showPopup();
-			}
 			runTimeFetchService();
 		}
 	}
@@ -543,6 +539,56 @@ public class MainActivity extends FragmentActivity implements
 			mHandler.removeCallbacks(mStatusChecker);
 		}
 	}
+    @Override
+    public void onMapReady(GoogleMap _mMap) {
+        mMap = _mMap;
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
+        mMap.setInfoWindowAdapter(new LPGWindow());
+
+        // Put markers on map.
+        drawMap(ld.getArr());
+        mapMoveToInitLocation(mMap);
+    }
+
+    public void mapMoveToInitLocation(GoogleMap mMap) {
+        if (mMap != null) {
+            LatLng CurLoc = new LatLng(32.076757, 34.786835);
+            int zoom = 10;
+
+            gps = new GPSLocation(this);
+
+            if (checkPermission()) {
+                mMap.setMyLocationEnabled(true);
+            }
+
+            if (gps.canGetLocation()) {
+                CurLoc = new LatLng(gps.getLatitude(), gps.getLongitude());
+                zoom = 11;
+            }
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(CurLoc, zoom));
+        }
+    }
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+				// If request is cancelled, the result arrays are empty.
+				if (grantResults.length > 0
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mapMoveToInitLocation(mMap);
+				}
+				return;
+			}
+		}
+	}
+
+    public boolean checkPermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
 
 	public boolean onMarkerClick(Marker marker) {
 		return false;
