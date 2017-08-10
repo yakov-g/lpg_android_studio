@@ -21,9 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DBData {
-
-	final static String url_db_get = "http://lpg.site40.net/lpg_get.php";
-	final static String url_db_set = "http://lpg.site40.net/lpg_set.php";
+	final static String url_db_get = "http://lpgisrael.000webhostapp.com/lpg_get.php";
+	final static String url_db_set = "http://lpgisrael.000webhostapp.com/lpg_set.php";
 	static InputStream is = null;
 	
 	public JSONObject getDBConfig()
