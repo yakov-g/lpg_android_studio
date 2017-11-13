@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.yakov.goldberg.lpg"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         multiDexEnabled true
     }
     buildTypes {
@@ -29,5 +29,5 @@ android {
 dependencies {
     apk 'com.android.support:support-v4:21.0.3'
     compile 'com.google.android.gms:play-services:+'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
 }
