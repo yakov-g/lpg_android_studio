@@ -2,7 +2,7 @@
 <resources>
 
     <!-- General -->
-    <string name="version_string">Version: 0.1.8</string>
+    <string name="version_string">Version: 0.1.9</string>
     
     <!-- Action bar menu items -->
     <string name="app_name">גפ\'\'מ ישראל</string>
